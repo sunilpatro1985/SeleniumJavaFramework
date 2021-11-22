@@ -13,18 +13,48 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProductsPage {
+public class ProductsPage extends BasePage {
     WebDriver driver;
     WebDriverWait wait;
 
-    public ProductsPage() {
+    /*public ProductsPage() {
         driver = PageDriver.getCurrentDriver();
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = ".title")
-    public WebElement productsTest;
+    public WebElement productsTest;*/
 
+    By productsText = By.cssSelector(".title");
+
+    By inventoryItems = By.cssSelector(".inventory_item");
+    By cart_count = By.className("shopping_cart_badge");
+    By remove_first_item = By.cssSelector(".inventory_item:nth-child(1) .btn_inventory");
+    By remove_second_item = By.cssSelector(".inventory_item:nth-child(2) .btn_inventory");
+    By sort_selector = By.cssSelector(".product_sort_container");
+    By first_item_name = By.cssSelector(".inventory_item:nth-child(1) .inventory_item_name");
+    By first_item_price = By.cssSelector(".inventory_item:nth-child(1) .inventory_item_price");
+
+    public void waitForProductText() {
+        wait = new WebDriverWait(PageDriver.getCurrentDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.presenceOfElementLocated(productsText));
+    }
+
+    public int getItemsCount() {
+        return size(inventoryItems);
+    }
+
+    public void add_items_to_cart() {
+        for(int i=1; i<=getItemsCount(); i++){
+            click((By.cssSelector(".inventory_item:nth-child("+i+") .btn_inventory")));
+        }
+    }
+
+    public String getCartCount() {
+        return getText(cart_count);
+    }
+
+    /*
     //public WebElement productsText =  driver.findElement(By.cssSelector(".title"));
 
     public void waitForProduct() {
@@ -53,4 +83,6 @@ public class ProductsPage {
             }
         };
     }
+    */
+
 }

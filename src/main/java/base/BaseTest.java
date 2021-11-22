@@ -26,12 +26,12 @@ public class BaseTest {
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
-            //WebDriverManager.chromedriver().setup();
-            //driver = new ChromeDriver();
 
-            cap.setBrowserName("Chrome");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
 
+            //cap.setBrowserName("Chrome");
+            //driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
 
         }else
         if(browser.contains("firefox")){

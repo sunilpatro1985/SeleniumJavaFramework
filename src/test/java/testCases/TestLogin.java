@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProductsPage;
@@ -33,7 +34,11 @@ public class TestLogin extends BaseTest {
             loginPage.login("standard_user","secret_sauce");
             Thread.sleep(2000);
             //ProductsPage productPage = new ProductsPage();
-            productPage.waitForProduct();
+            productPage.waitForProductText();
+
+            productPage.add_items_to_cart();
+        Assert.assertEquals("6", productPage.getCartCount());
+
             Thread.sleep(2000);
     }
 
