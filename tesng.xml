@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MySuite" parallel="none">
+    <test name="Regression" preserve-order="true">
+        <classes>
+
+            <class name="testCases.TestLogin"/>
+            <class name="testCases.TestLogin_invalid"/>
+        </classes>
+    </test>
+
+</suite>

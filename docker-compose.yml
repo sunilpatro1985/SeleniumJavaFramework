@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  hub:
+    image: selenium/hub:4.1
+    shm_size: '1gb'
+    ports:
+      - "4444:4444"
+
+  chrome:
+    image: selenium/node-chrome-debug
+    depends_on:
+      - hub
+    environment:
+      - HUB_HOST=hub

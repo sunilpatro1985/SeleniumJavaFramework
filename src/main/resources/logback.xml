@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <!--logger name="com.mobile.OnBalance" level="INFO"/>
+    <logger name="com.mobile.OnBalance" level="WARN"/-->
+    <logger name="org.apache.http" level="OFF"/>
+    <logger name="io.restassured" level="OFF"/>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d %-5level %logger{45} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+    <timestamp key="bySecond" datePattern="dd-MM-yyy-HH-mm-ss"/>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--file>${user.dir}/logs/App-${bySecond}.log</file-->
+        <file>/Users/skpatro/MyProjects/SelFramework_Sept21/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>logs/employee-%i.log.gz</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>2</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>2MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern-->
+            <pattern>%d %-5level %logger{45} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="ALL">
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="FILE"/>
+    </root>
+    <!--root level="WARN">
+        <appender-ref ref="consoleAppender" />
+        <appender-ref ref="FILE"/>
+    </root-->
+</configuration>
