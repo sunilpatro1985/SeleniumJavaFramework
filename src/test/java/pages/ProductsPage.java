@@ -13,21 +13,47 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProductsPage {
+public class ProductsPage extends BasePage{
     WebDriver driver;
     WebDriverWait wait;
 
-    public ProductsPage() {
+    /*public ProductsPage() {
         driver = PageDriver.getCurrentDriver();
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = ".title")
-    public WebElement productsTest;
+    public WebElement productsTest;*/
+
+    By productsText = By.cssSelector(".title");
+    By inventoryItems = By.cssSelector(".inventory_item");
+    By addToCartButtons = By.cssSelector(".inventory_item button");
+    By cartCount = By.cssSelector(".shopping_cart_badge");
 
     //public WebElement productsText =  driver.findElement(By.cssSelector(".title"));
 
-    public void waitForProduct() {
+
+    public void waitForProduct(){
+        waitForEl(productsText);
+    }
+
+    public int getItemsSize(){
+        return size(inventoryItems);
+    }
+
+    public String getCartCount(){
+        return getText(cartCount);
+    }
+
+    public void add_All_items_ToCart(){
+        for(WebElement el : getEls(addToCartButtons)){
+            el.click();
+        }
+    }
+
+
+
+    /*public void waitForProduct() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(productsTest));
     }
@@ -36,9 +62,9 @@ public class ProductsPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         //wait.until(ExpectedConditions.visibilityOfElementLocated(productsTest))
         wait.until(waitForElement(productsTest));
-    }
+    }*/
 
-    public static ExpectedCondition<Boolean> waitForElement(WebElement el) {
+    /*public static ExpectedCondition<Boolean> waitForElement(WebElement el) {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 boolean flag = false;
@@ -52,5 +78,5 @@ public class ProductsPage {
                 return flag;
             }
         };
-    }
+    }*/
 }
