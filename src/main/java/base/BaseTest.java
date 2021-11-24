@@ -30,18 +30,22 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
 
-            //cap.setBrowserName("Chrome");
+            //cap.setBrowserName("chrome");
             //driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
 
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+
+            cap.setBrowserName("firefox");
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
+
+            //WebDriverManager.firefoxdriver().setup();
+            //driver = new FirefoxDriver();
         }
 
         driver.get("https://www.saucedemo.com/");
-
+        System.out.println(cap.getBrowserName());
         //PageDriver.setDriver(driver);
         PageDriver.getInstance().setDriver(driver);
         System.out.println("driver initiated");

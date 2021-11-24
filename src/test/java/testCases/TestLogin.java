@@ -36,8 +36,12 @@ public class TestLogin extends BaseTest {
             //ProductsPage productPage = new ProductsPage();
             productPage.waitForProductText();
 
-            productPage.add_items_to_cart();
-        Assert.assertEquals("6", productPage.getCartCount());
+            //productPage.add_items_to_cart();
+        //Assert.assertEquals("6", productPage.getCartCount());
+
+        Assert.assertEquals(
+                productPage.select_sortOption("Name (Z to A)").getFirstItem()
+                ,"Test.allTheThings() T-Shirt (Red)");
 
             Thread.sleep(2000);
     }

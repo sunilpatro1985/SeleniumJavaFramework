@@ -35,6 +35,16 @@ public class ProductsPage extends BasePage {
     By first_item_name = By.cssSelector(".inventory_item:nth-child(1) .inventory_item_name");
     By first_item_price = By.cssSelector(".inventory_item:nth-child(1) .inventory_item_price");
 
+    public String getFirstItem(){
+        return getText(first_item_name);
+    }
+
+    public String getFirstItemPrice(){
+        return getText(first_item_price);
+    }
+
+
+
     public void waitForProductText() {
         wait = new WebDriverWait(PageDriver.getCurrentDriver(), Duration.ofSeconds(15));
         wait.until(ExpectedConditions.presenceOfElementLocated(productsText));
@@ -52,6 +62,11 @@ public class ProductsPage extends BasePage {
 
     public String getCartCount() {
         return getText(cart_count);
+    }
+
+    public ProductsPage select_sortOption(String option){
+        selectByText(sort_selector, option);
+        return this;
     }
 
     /*
