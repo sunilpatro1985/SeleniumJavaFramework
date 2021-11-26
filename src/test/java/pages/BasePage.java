@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -48,6 +49,11 @@ public class BasePage {
     public List<WebElement> getEls(By byLocator){
         return PageDriver.getCurrentDriver()
                 .findElements(byLocator);
+    }
+
+    public void selectByOption(By byLocator, String option){
+        Select select = new Select(PageDriver.getCurrentDriver().findElement(byLocator));
+        select.selectByVisibleText(option);
     }
 
     public void waitForEl(By byLocator){
