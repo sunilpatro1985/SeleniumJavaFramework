@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,9 +20,11 @@ public class BaseTest {
     WebDriver driver = null;
     WebDriverWait wait;
 
+    @Parameters({"browser"})
     @BeforeClass
-    public void setUp() throws MalformedURLException {
-        String browser = System.getProperty("browser", "chrome");
+    public void setUp(String browserName) throws MalformedURLException {
+        //String browser = System.getProperty("browser", "chrome");
+        String browser = browserName;
         DesiredCapabilities cap = new DesiredCapabilities();
 
         if(browser.contains("chrome")){

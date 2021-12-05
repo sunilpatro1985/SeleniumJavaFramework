@@ -34,13 +34,13 @@ public class TestLogin extends BaseTest {
             loginPage.login("standard_user","secret_sauce");
             Thread.sleep(2000);
             //ProductsPage productPage = new ProductsPage();
-            productPage.waitForProductText();
+            productPage.waitForProduct();
 
             //productPage.add_items_to_cart();
         //Assert.assertEquals("6", productPage.getCartCount());
 
         Assert.assertEquals(
-                productPage.select_sortOption("Name (Z to A)").getFirstItem()
+                productPage.select_sortOption("Name (Z to A)").getFirstItemName()
                 ,"Test.allTheThings() T-Shirt (Red)");
 
             Thread.sleep(2000);
