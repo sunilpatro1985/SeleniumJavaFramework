@@ -31,9 +31,11 @@ public class TestProductItems extends BaseTest {
         Thread.sleep(2000);
 
         ExcelReader excelreader = new ExcelReader();
-        excelreader.setExcelFile("/test_data.xlsx", "prodsort");
+        excelreader.setExcelFile("./test_data.xlsx", "prodsort");
 
         Object obj[][] = excelreader.to2DArray();
+
+        Thread.sleep(30);
 
         //productPage.select_sortOption("name (Z to A)");
         Assert.assertEquals(
