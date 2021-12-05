@@ -1,6 +1,8 @@
 package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,32 +22,35 @@ public class BaseTest {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         String browser = System.getProperty("browser", "chrome");
-        DesiredCapabilities cap =new DesiredCapabilities();
+        DesiredCapabilities cap = new DesiredCapabilities();
 
         if(browser.contains("chrome")){
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            //WebDriverManager.chromedriver().setup();
+            //driver = new ChromeDriver();
 
-            //cap.setBrowserName("chrome");
-            //driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
+            //If you run on docker
+            cap.setBrowserName("chrome");
+            cap.setPlatform(Platform.LINUX);
+            driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
 
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
-
-            cap.setBrowserName("firefox");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
-
             //WebDriverManager.firefoxdriver().setup();
             //driver = new FirefoxDriver();
+
+            //If you run on docker
+            cap.setBrowserName("firefox");
+            cap.setPlatform(Platform.LINUX);
+            driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
         }
 
         driver.get("https://www.saucedemo.com/");
-        System.out.println(cap.getBrowserName());
+
         //PageDriver.setDriver(driver);
         PageDriver.getInstance().setDriver(driver);
         System.out.println("driver initiated");

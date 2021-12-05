@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <suiteXmlFile>testng.xml</suiteXmlFile>
+        <XmlFile>testng.xml</XmlFile>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <skipTests>false</skipTests>
     </properties>
@@ -38,6 +38,22 @@
             <artifactId>extentreports</artifactId>
             <version>5.0.9</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.1.0</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
         <dependency>
@@ -83,22 +99,6 @@
             <scope>test</scope>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.1.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.1.0</version>
-        </dependency>
-
-
     </dependencies>
 
     <build>
@@ -119,12 +119,12 @@
                     <!--configuration>
                         <skipTests>${skipTests}</skipTests>
                     </configuration-->
-                <!--configuration>
+                <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${XmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
 
-                </configuration-->
+                </configuration>
             </plugin>
         </plugins>
     </build>

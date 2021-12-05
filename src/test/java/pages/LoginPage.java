@@ -8,7 +8,7 @@ import org.openqa.selenium.support.*;
 
 import java.util.List;
 
-public class LoginPage extends  BasePage{
+public class LoginPage extends BasePage{
     WebDriver driver;
 
     /*public LoginPage(){
@@ -16,9 +16,9 @@ public class LoginPage extends  BasePage{
         driver = PageDriver.getCurrentDriver();
 
         PageFactory.initElements(driver, this);
-    }*/
+    }
 
-    /*@FindBy(how = How.ID, using = "user-name")
+    @FindBy(how = How.ID, using = "user-name")
     public WebElement userName;
 
     @FindBy(id = "password")
@@ -27,10 +27,6 @@ public class LoginPage extends  BasePage{
 
     @FindBy(how = How.ID, using = "login-button")
     public WebElement signIn;*/
-
-    By userName = By.id("user-name");
-    By password = By.id("password");
-    By signIn = By.id("login-button");
 
     /*@FindBy(how = How.ID, using = "name")
     public List<WebElement> items_name;
@@ -51,16 +47,21 @@ public class LoginPage extends  BasePage{
     )
     public List<WebElement> itemsList;*/
 
-    /*public void login(String username, String Password){
+
+    By userName = By.id("user-name");
+    By password = By.id("password");
+    By signIn = By.id("login-button");
+
+    public void login(String username, String Password){
         /*userName =  driver.findElement(By.id("user-name"));
         password =  driver.findElement(By.id("password"));
         signIn =  driver.findElement(By.id("login-button"));*/
-        /*userName.sendKeys(username);
-        password.sendKeys(Password);
-        signIn.click();
-    }*/
+            //driver.findElement(userName).sendKeys(username);
+            //driver.findElement(password).sendKeys(Password);
+        //userName.sendKeys(username);
+        //password.sendKeys(Password);
+        //signIn.click();
 
-    public void login(String username, String Password){
         type(userName, username);
         type(password, Password);
         click(signIn);
