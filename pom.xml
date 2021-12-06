@@ -11,7 +11,8 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <XmlFile>testng.xml</XmlFile>
+        <!--XmlFile>testng.xml</XmlFile-->
+        <XmlFile>testng_dockerC_parallel.xml</XmlFile>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <skipTests>false</skipTests>
     </properties>

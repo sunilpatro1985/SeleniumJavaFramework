@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,9 +20,12 @@ public class BaseTest {
     WebDriver driver = null;
     WebDriverWait wait;
 
+    @Parameters({"browser"})
     @BeforeClass
-    public void setUp() throws MalformedURLException {
-        String browser = System.getProperty("browser", "chrome");
+    public void setUp(String browserName) throws MalformedURLException {
+        //String browser = System.getProperty("browser", "chrome");
+        String browser = browserName;
+
         DesiredCapabilities cap = new DesiredCapabilities();
 
         if(browser.contains("chrome")){
@@ -36,7 +40,7 @@ public class BaseTest {
             cap.setBrowserName("chrome");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
-
+            System.out.println("Tests running on " + cap.getBrowserName());
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
@@ -47,6 +51,8 @@ public class BaseTest {
             cap.setBrowserName("firefox");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
+            System.out.println("Tests running on " + cap.getBrowserName());
+
         }
 
         driver.get("https://www.saucedemo.com/");

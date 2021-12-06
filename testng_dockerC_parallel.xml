@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MySuite" parallel="tests">
+    <test name="chrome_Regression" preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <!--class name="testCases.TestLogin"/>
+            <class name="testCases.TestLogin_invalid"/-->
+            <class name="testCases.TestProductItems"/>
+        </classes>
+    </test>
+    <test name="ff_Regression" preserve-order="true">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <!--class name="testCases.TestLogin"/>
+            <class name="testCases.TestLogin_invalid"/-->
+            <class name="testCases.TestProductItems"/>
+        </classes>
+    </test>
+</suite>
