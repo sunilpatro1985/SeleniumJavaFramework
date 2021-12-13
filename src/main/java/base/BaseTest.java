@@ -25,6 +25,7 @@ public class BaseTest {
     public void setUp(String browserName) throws MalformedURLException {
         //String browser = System.getProperty("browser", "chrome");
         String browser = browserName;
+
         DesiredCapabilities cap = new DesiredCapabilities();
 
         if(browser.contains("chrome")){
@@ -39,7 +40,7 @@ public class BaseTest {
             cap.setBrowserName("chrome");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
-
+            System.out.println("Tests running on " + cap.getBrowserName());
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
@@ -50,6 +51,8 @@ public class BaseTest {
             cap.setBrowserName("firefox");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
+            System.out.println("Tests running on " + cap.getBrowserName());
+
         }
 
         driver.get("https://www.saucedemo.com/");
