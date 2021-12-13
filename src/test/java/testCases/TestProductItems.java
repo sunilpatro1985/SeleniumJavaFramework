@@ -16,6 +16,8 @@ public class TestProductItems extends BaseTest {
 
     @Test
     public void Test_TestProductItems() throws Exception {
+        System.out.println(Thread.currentThread().getId());
+
         ProductsPage productPage = new ProductsPage();
         LoginPage loginPage = new LoginPage();
 

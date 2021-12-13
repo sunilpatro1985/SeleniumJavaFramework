@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MySuite" parallel="classes">
+    <test name="chrome_Regression" preserve-order="true">
+        <classes>
+            <class name="parallel_distribute.TestNG1"/>
+        </classes>
+    </test>
+    <test name="ff_Regression" preserve-order="true">
+        <classes>
+
+            <class name="parallel_distribute.TestNG2"/>
+        </classes>
+    </test>
+</suite>

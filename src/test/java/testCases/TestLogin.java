@@ -20,7 +20,8 @@ public class TestLogin extends BaseTest {
 
     @Test
     public void MavenParamTest() throws InterruptedException {
-            //WebDriver driver = PageDriver.getCurrentDriver();
+        System.out.println(Thread.currentThread().getId());
+        //WebDriver driver = PageDriver.getCurrentDriver();
             ProductsPage productPage = new ProductsPage();
             //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             /*driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));

@@ -12,7 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <!--XmlFile>testng.xml</XmlFile-->
-        <XmlFile>testng_dockerC_parallel.xml</XmlFile>
+        <XmlFile>testng_practice_parallel.xml</XmlFile>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <skipTests>false</skipTests>
     </properties>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
+            <version>7.3.0</version>
             <scope>compile</scope>
         </dependency>
 
@@ -117,14 +117,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
-                    <!--configuration>
-                        <skipTests>${skipTests}</skipTests>
-                    </configuration-->
                 <configuration>
-                    <suiteXmlFiles>
+                    <!--suiteXmlFiles>
                         <suiteXmlFile>${XmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
-
+                    </suiteXmlFiles-->
+                    <!--includes>
+                           <if the Test methods are not having test >
+                        <include>src/test/parallel_distribute/*</include>
+                    </includes-->
+                    <parallel>classes</parallel>
+                    <threadCount>2</threadCount>
+                    <skipTests>${skipTests}</skipTests>
                 </configuration>
             </plugin>
         </plugins>

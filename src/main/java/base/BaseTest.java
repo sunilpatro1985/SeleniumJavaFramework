@@ -20,11 +20,14 @@ public class BaseTest {
     WebDriver driver = null;
     WebDriverWait wait;
 
-    @Parameters({"browser"})
+    /*@Parameters({"browser"})
     @BeforeClass
-    public void setUp(String browserName) throws MalformedURLException {
-        //String browser = System.getProperty("browser", "chrome");
-        String browser = browserName;
+    public void setUp(String browserName) throws MalformedURLException {*/
+    @BeforeClass
+    public void setUp() throws MalformedURLException {
+
+        String browser = System.getProperty("browser", "chrome");
+        //String browser = browserName;
 
         DesiredCapabilities cap = new DesiredCapabilities();
 
@@ -33,25 +36,25 @@ public class BaseTest {
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
-            //WebDriverManager.chromedriver().setup();
-            //driver = new ChromeDriver();
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
 
             //If you run on docker
-            cap.setBrowserName("chrome");
+            /*cap.setBrowserName("chrome");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
-            System.out.println("Tests running on " + cap.getBrowserName());
+            System.out.println("Tests running on " + cap.getBrowserName());*/
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
-            //WebDriverManager.firefoxdriver().setup();
-            //driver = new FirefoxDriver();
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
 
             //If you run on docker
-            cap.setBrowserName("firefox");
+            /*cap.setBrowserName("firefox");
             cap.setPlatform(Platform.LINUX);
             driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
-            System.out.println("Tests running on " + cap.getBrowserName());
+            System.out.println("Tests running on " + cap.getBrowserName());*/
 
         }
 

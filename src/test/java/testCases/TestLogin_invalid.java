@@ -17,7 +17,9 @@ public class TestLogin_invalid extends BaseTest {
 
     @Test
     public void MavenParamTest() throws InterruptedException {
-            //WebDriver driver = PageDriver.getDriver();
+        System.out.println(Thread.currentThread().getId());
+
+        //WebDriver driver = PageDriver.getDriver();
 
             //wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 

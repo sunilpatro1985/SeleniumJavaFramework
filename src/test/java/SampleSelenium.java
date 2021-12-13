@@ -11,7 +11,7 @@ public class SampleSelenium {
     WebDriver driver = null;
     WebDriverWait wait;
 
-    @Test
+    //@Test
     public void MavenParamTest() throws InterruptedException {
 
         String browser = System.getProperty("browser", "chrome");
