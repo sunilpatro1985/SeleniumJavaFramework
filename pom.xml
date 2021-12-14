@@ -126,7 +126,7 @@
                         <include>src/test/parallel_distribute/*</include>
                     </includes-->
                     <parallel>classes</parallel>
-                    <threadCount>2</threadCount>
+                    <threadCount>3</threadCount>
                     <skipTests>${skipTests}</skipTests>
                 </configuration>
             </plugin>

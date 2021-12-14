@@ -18,7 +18,7 @@ import java.time.Duration;
 public class TestLogin extends BaseTest {
     WebDriverWait wait;
 
-    @Test
+    //@Test
     public void MavenParamTest() throws InterruptedException {
         System.out.println(Thread.currentThread().getId());
         //WebDriver driver = PageDriver.getCurrentDriver();

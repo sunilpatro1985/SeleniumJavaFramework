@@ -14,7 +14,7 @@ import pages.ProductsPage;
 public class TestProductItems extends BaseTest {
     WebDriverWait wait;
 
-    @Test
+    //@Test
     public void Test_TestProductItems() throws Exception {
         System.out.println(Thread.currentThread().getId());
 
