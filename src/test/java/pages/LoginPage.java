@@ -1,5 +1,6 @@
 package pages;
 
+import base.App;
 import base.PageDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -64,6 +65,12 @@ public class LoginPage extends BasePage{
 
         type(userName, username);
         type(password, Password);
+        click(signIn);
+    }
+
+    public void login(){
+        type(userName, App.validUserName);
+        type(password, App.validPassword);
         click(signIn);
     }
 

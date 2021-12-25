@@ -1,5 +1,6 @@
 package testCases;
 
+import base.App;
 import base.BaseTest;
 import base.PageDriver;
 import org.openqa.selenium.*;
@@ -30,7 +31,7 @@ public class TestLogin extends BaseTest {
 
             driver.findElement(By.id("login-button")).click();*/
             LoginPage loginPage = new LoginPage();
-            loginPage.login("standard_user","secret_sauce");
+            loginPage.login(App.validUserName,App.validPassword);
             Thread.sleep(2000);
             //ProductsPage productPage = new ProductsPage();
             productPage.waitForProduct();

@@ -121,9 +121,9 @@
                         <skipTests>${skipTests}</skipTests>
                     </configuration-->
                 <configuration>
-                    <suiteXmlFiles>
+                    <!--suiteXmlFiles>
                         <suiteXmlFile>${XmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
+                    </suiteXmlFiles-->
 
                 </configuration>
             </plugin>

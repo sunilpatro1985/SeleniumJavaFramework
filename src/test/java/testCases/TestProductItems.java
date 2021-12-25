@@ -1,5 +1,6 @@
 package testCases;
 
+import base.App;
 import base.BaseTest;
 import base.ExcelReader;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class TestProductItems extends BaseTest {
         ProductsPage productPage = new ProductsPage();
         LoginPage loginPage = new LoginPage();
 
-        loginPage.login("standard_user","secret_sauce");
+        loginPage.login(); //valid login
         Thread.sleep(2000);
 
         productPage.waitForProduct();

@@ -1,5 +1,6 @@
 package testCases;
 
+import base.App;
 import base.BaseTest;
 import base.PageDriver;
 import org.openqa.selenium.By;
@@ -30,7 +31,7 @@ public class TestLogin_invalid extends BaseTest {
             driver.findElement(By.id("login-button")).click();*/
 
             LoginPage loginPage = new LoginPage();
-            loginPage.login("standard_user","secret_sauce1");
+            loginPage.login(App.validUserName,App.inValidpassword);
             Thread.sleep(2000);
     }
 

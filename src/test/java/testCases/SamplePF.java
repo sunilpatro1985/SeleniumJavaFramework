@@ -23,7 +23,7 @@ public class SamplePF {
     @FindBy(id = "delay")
     public WebElement delayText;
 
-    @Test
+    //@Test
     public void setUp() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
