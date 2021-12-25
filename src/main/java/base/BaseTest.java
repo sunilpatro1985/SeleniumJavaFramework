@@ -35,26 +35,30 @@ public class BaseTest {
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-
-            //If you run on docker
-            /*cap.setBrowserName("chrome");
-            cap.setPlatform(Platform.LINUX);
-            driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
-            System.out.println("Tests running on " + cap.getBrowserName());*/
+            if(App.platform.equalsIgnoreCase("local")){
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            else if(App.platform.equalsIgnoreCase("remote")){
+                    //If you run on docker
+                    cap.setBrowserName("chrome");
+                    cap.setPlatform(Platform.LINUX);
+                    driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
+                }
         }else
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-
-            //If you run on docker
-            /*cap.setBrowserName("firefox");
-            cap.setPlatform(Platform.LINUX);
-            driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
-            System.out.println("Tests running on " + cap.getBrowserName());*/
-
+            if(App.platform.equalsIgnoreCase("local")){
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            }
+            else if(App.platform.equalsIgnoreCase("remote")){
+                //If you run on docker
+                cap.setBrowserName("firefox");
+                cap.setPlatform(Platform.LINUX);
+                driver = new RemoteWebDriver(new URL("http://localhost:4442/wd/hub"), cap);
+                //System.out.println("Tests running on " + cap.getBrowserName());
+            }
         }
 
         driver.get("https://www.saucedemo.com/"); //prod
@@ -64,7 +68,13 @@ public class BaseTest {
 
         //PageDriver.setDriver(driver);
         PageDriver.getInstance().setDriver(driver);
-        System.out.println("driver initiated");
+        System.out.println("");
+        System.out.println("------driver initiated------");
+        System.out.println("Running on thread - " + Thread.currentThread().getId());
+        System.out.println("Tests running on " +
+            ((RemoteWebDriver)driver).getCapabilities().getBrowserName());
+
+        //cap.getBrowserName());
     }
 
     @AfterClass
