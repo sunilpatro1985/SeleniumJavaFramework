@@ -2,7 +2,9 @@ package testCases;
 
 import base.App;
 import base.BaseTest;
+import base.ExtentReport;
 import base.PageDriver;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -17,7 +19,7 @@ public class TestLogin_invalid extends BaseTest {
     WebDriverWait wait;
 
     @Test
-    public void MavenParamTest() throws InterruptedException {
+    public void verifyInvalidLogin() throws InterruptedException {
             //WebDriver driver = PageDriver.getDriver();
 
             //wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -33,6 +35,8 @@ public class TestLogin_invalid extends BaseTest {
             LoginPage loginPage = new LoginPage();
             loginPage.login(App.validUserName,App.inValidpassword);
             Thread.sleep(2000);
+        ExtentReport.getTest().log(Status.INFO, "login error");
+
     }
 
 }

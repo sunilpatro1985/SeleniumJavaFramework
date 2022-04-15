@@ -1,11 +1,13 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="MySuite" parallel="none">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MySuite" parallel="classes">
     <test name="Regression" preserve-order="true">
         <classes>
 
-            <!--class name="testCases.TestLogin"/>
-            <class name="testCases.TestLogin_invalid"/-->
-            <class name="testCases.TestProductItems"/>
+            <class name="testCases.TestLogin"/>
+            <class name="testCases.TestLogin_invalid"/>
+            <!--class name="testCases.TestProductItems"/-->
+            <!--class name="base.extentPkg.ExtentTestSample"/>
+            <class name="base.extentPkg.ExtentTestSample1"/-->
         </classes>
     </test>
 

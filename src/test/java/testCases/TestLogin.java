@@ -2,7 +2,9 @@ package testCases;
 
 import base.App;
 import base.BaseTest;
+import base.ExtentReport;
 import base.PageDriver;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -19,7 +21,7 @@ public class TestLogin extends BaseTest {
     WebDriverWait wait;
 
     @Test
-    public void MavenParamTest() throws InterruptedException {
+    public void VeirfyValidLogin() throws InterruptedException {
             //WebDriver driver = PageDriver.getCurrentDriver();
             ProductsPage productPage = new ProductsPage();
             //wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -35,6 +37,7 @@ public class TestLogin extends BaseTest {
             Thread.sleep(2000);
             //ProductsPage productPage = new ProductsPage();
             productPage.waitForProduct();
+            ExtentReport.getTest().log(Status.INFO, "login Successful");
             Thread.sleep(2000);
     }
 
