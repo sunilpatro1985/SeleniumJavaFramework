@@ -5,3 +5,5 @@
 .factorypath
 .project
 /test-output/
+/reports/
+/screenshot/
