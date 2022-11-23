@@ -3,13 +3,10 @@ package testCases;
 import base.App;
 import base.BaseTest;
 import base.ExtentReport;
-import base.PageDriver;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -41,7 +38,7 @@ public class TestLogin extends BaseTest {
             Thread.sleep(2000);
     }
 
-    public static ExpectedCondition<Boolean> waitForElement(WebElement el) {
+    /*public static ExpectedCondition<Boolean> waitForElement(WebElement el) {
         return new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
                 boolean flag = false;
@@ -56,6 +53,6 @@ public class TestLogin extends BaseTest {
                 return flag;
             }
         };
-    }
+    }*/
 
 }

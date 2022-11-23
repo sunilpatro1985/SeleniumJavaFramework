@@ -1,4 +1,4 @@
-package testCases;
+package old;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

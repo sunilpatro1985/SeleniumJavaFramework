@@ -18,3 +18,8 @@ services:
     ports:
       - "4442:4444"
       - "7901:7900"
+
+
+      #Turn ON docker - docker must be running
+      #docker-compose -f docker/docker-compose-standalone.yml up -d --scale chrome=3
+      #mvn test -Dplatform=remote
