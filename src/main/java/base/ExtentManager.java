@@ -9,7 +9,7 @@ public class ExtentManager {
 
     public static ExtentReports getInstance(){
         if(report == null){
-            ExtentSparkReporter spark = new ExtentSparkReporter("spark.html");
+            ExtentSparkReporter spark = new ExtentSparkReporter("./reports/spark.html");
             report = new ExtentReports();
 
             spark.config().setTheme(Theme.DARK);
