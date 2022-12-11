@@ -1,5 +1,6 @@
-package base;
+package base.driver;
 
+import base.App;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +35,59 @@ public class DriverFactory {
                 //If you run on docker
                 cap.setBrowserName("chrome");
                 cap.setPlatform(Platform.LINUX);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+            }
+        }else
+        if(browser.contains("firefox")){
+            //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
+            if(App.platform.equalsIgnoreCase("local")){
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            }
+            else if(App.platform.equalsIgnoreCase("remote")){
+                //If you run on docker
+                cap.setBrowserName("firefox");
+                cap.setPlatform(Platform.LINUX);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+                //System.out.println("Tests running on " + cap.getBrowserName());
+            }
+        }
+
+        driver.get("https://www.saucedemo.com/"); //prod
+        /*if(App.stage.equals("qa")){
+            driver.get("https://www.qa.saucedemo.com/");
+        }*/
+
+        //PageDriver.setDriver(driver);
+        PageDriver.getInstance().setDriver(driver);
+
+    }
+}
+
+
+
+
+
+
+/*
+
+selenium standalone chrome & firefox dockers
+docker-compose-standalone.yml
+
+
+       if(browser.contains("chrome")){
+            //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
+            //WebDriverManager.chromedriver().browserVersion("92");
+            //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
+
+            if(App.platform.equalsIgnoreCase("local")){
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            else if(App.platform.equalsIgnoreCase("remote")){
+                //If you run on docker
+                cap.setBrowserName("chrome");
+                cap.setPlatform(Platform.LINUX);
                 driver = new RemoteWebDriver(new URL("http://localhost:4441/wd/hub"), cap);
             }
         }else
@@ -51,14 +105,4 @@ public class DriverFactory {
                 //System.out.println("Tests running on " + cap.getBrowserName());
             }
         }
-
-        driver.get("https://www.saucedemo.com/"); //prod
-        /*if(App.stage.equals("qa")){
-            driver.get("https://www.qa.saucedemo.com/");
-        }*/
-
-        //PageDriver.setDriver(driver);
-        PageDriver.getInstance().setDriver(driver);
-
-    }
-}
+ */

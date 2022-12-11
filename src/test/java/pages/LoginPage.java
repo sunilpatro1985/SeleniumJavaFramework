@@ -2,14 +2,10 @@ package pages;
 
 import base.App;
 import base.ExtentReport;
-import base.PageDriver;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.*;
-
-import java.util.List;
 
 public class LoginPage extends BasePage{
     WebDriver driver;

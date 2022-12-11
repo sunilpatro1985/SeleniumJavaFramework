@@ -1,14 +1,12 @@
 package testCases;
 
 import base.App;
-import base.BaseTest;
+import base.driver.BaseTest;
 import base.ExtentReport;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-
-import java.time.Duration;
 
 public class TestLogin_invalid extends BaseTest {
     WebDriverWait wait;

@@ -1,18 +1,14 @@
 package testCases;
 
 import base.App;
-import base.BaseTest;
+import base.driver.BaseTest;
 import base.ExtentReport;
 import com.aventstack.extentreports.Status;
-import org.openqa.selenium.*;
 
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProductsPage;
-
-import java.time.Duration;
 
 public class TestLogin extends BaseTest {
     WebDriverWait wait;
