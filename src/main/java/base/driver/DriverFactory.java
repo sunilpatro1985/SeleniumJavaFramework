@@ -19,6 +19,7 @@ public class DriverFactory {
     public static void openBrowser() throws MalformedURLException {
         WebDriver driver = null;
         DesiredCapabilities cap = new DesiredCapabilities();
+        ChromeOptions cp = new ChromeOptions();
         //String browser = System.getProperty("browser", "chrome");
         String browser = App.browser;
         //String browser = browserName;
@@ -27,19 +28,18 @@ public class DriverFactory {
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
-
+            if(App.enableRemoteOptions.equalsIgnoreCase("true")){
+                cp = getChromeOptions(cap);
+            }
             if(App.platform.equalsIgnoreCase("local")){
                 WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(cp);
             }
             else if(App.platform.equalsIgnoreCase("remote")){
                 //If you run on docker
                 cap.setBrowserName("chrome");
                 cap.setPlatform(Platform.LINUX);
-                if(App.enableRemoteOptions.equalsIgnoreCase("true")) {
-                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), getChromeOptions(cap));
-                }else
-                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cp);
             }
         }else
         if(browser.contains("firefox")){
