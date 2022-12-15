@@ -28,7 +28,7 @@ public class DriverFactory {
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
-            if(App.enableRemoteOptions.equalsIgnoreCase("true")){
+            if(App.enableBrowserOptions.equalsIgnoreCase("true")){
                 cp = getChromeOptions(cap);
             }
             if(App.platform.equalsIgnoreCase("local")){

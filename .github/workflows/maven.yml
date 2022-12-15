@@ -9,9 +9,8 @@
 name: run test
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -28,4 +27,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn test --file pom.xml -Dplatform=remote
+      run: mvn test --file pom.xml -DenableBrowserOptions=true
