@@ -21,15 +21,24 @@ stages
     }
     stage('Test'){
         steps{
+        catchError{
             echo "Test stage"
-            sh "mvn test -Dbrowser=${params.browser} -Dplatform=${params.platform}"
+            sh "mvn test -Dbrowser=${params.browser} -Dplatform=${params.platform} -Dmaven.test.failure.ignore=true"
+            }
+            echo currentBuild.result
         }
+
+    }
+    stage('deploy'){
+            steps{
+                echo "deploy stage"
+            }
     }
 }
 post{
     always{
         echo "artifact"
-        archiveArtifacts artifacts: 'reports/spark.html', followSymlinks: false
+        archiveArtifacts artifacts: 'ExtentTestReport/E2ETestReport.html', followSymlinks: false
         archiveArtifacts artifacts: 'target/surefire-reports/emailable-report.html'
     }
 }
