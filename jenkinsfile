@@ -1,0 +1,35 @@
+pipeline {
+	agent any
+	parameters {
+      string defaultValue: 'chrome', description: 'select a browser', name: 'browser', trim: false
+      string defaultValue: 'local', description: 'select a platform', name: 'platform', trim: false
+    }
+
+tools
+{
+	maven 'maven_home'
+}
+stages
+{
+	stage('checkout')
+	{
+	steps{
+        echo "checkingout stage"
+        echo "${params.browser}"
+        git credentialsId: 'c5aef89d-c4bf-4c43-8aa6-7def9b90e32c', url: 'gh repo clone sunilpatro1985/SeleniumJavaFramework'
+    }
+    }
+    stage('Test'){
+        steps{
+            echo "Test stage"
+            sh "mvn test -Dbrowser=${params.browser} -Dplatform=${params.platform}"
+        }
+    }
+}
+post{
+    always{
+        echo "artifact"
+        archiveArtifacts artifacts: 'reports/spark.html', followSymlinks: false
+        archiveArtifacts artifacts: 'target/surefire-reports/emailable-report.html'
+    }
+}

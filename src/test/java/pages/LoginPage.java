@@ -50,6 +50,7 @@ public class LoginPage extends BasePage{
     By userName = By.id("user-name");
     By password = By.id("password");
     By signIn = By.id("login-button");
+    By invalidPasswordError = By.cssSelector("[data-test='error']");
 
     public void login(String username, String Password){
         /*userName =  driver.findElement(By.id("user-name"));
@@ -75,6 +76,10 @@ public class LoginPage extends BasePage{
 
     public WebElement getElementBasedOntext(String text){
         return driver.findElement(By.xpath("//[contains(text(), '"+text+"']"));
+    }
+
+    public String getInvalidPasswordErrorText(){
+        return getText(invalidPasswordError);
     }
 
 }
