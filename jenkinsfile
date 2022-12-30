@@ -33,3 +33,4 @@ post{
         archiveArtifacts artifacts: 'target/surefire-reports/emailable-report.html'
     }
 }
+}
