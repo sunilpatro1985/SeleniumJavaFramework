@@ -11,7 +11,7 @@ tools
 }
 stages
 {
-	stage('checkout')
+	stage('checkout stage')
 	{
 	steps{
         echo "checkingout stage"
