@@ -39,7 +39,7 @@ stages
 post{
     always{
         echo "artifact"
-        archiveArtifacts artifacts: 'ExtentTestReport/E2ETestReport.html', followSymlinks: false
+        archiveArtifacts artifacts: 'reports/spark.html', followSymlinks: false
         archiveArtifacts artifacts: 'target/surefire-reports/emailable-report.html'
         junit allowEmptyResults: true, skipMarkingBuildUnstable: true, skipPublishingChecks: true, testResults: 'target/surefire-reports/*.xml'
     }
