@@ -27,4 +27,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn test --file pom.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true"
+      run: mvn test --file pom.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
