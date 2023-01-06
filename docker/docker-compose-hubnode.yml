@@ -42,5 +42,7 @@ services:
       - "4443:4443"
       - "4444:4444"
 
-        #docker-compose -f docker-compose-hubnode.yml up -d --scale chrome=3
-      #change the remote url to localhost/4444/wd/hub
+
+#cd docker
+#docker-compose -f docker-compose-hubNode.yml up -d
+# To stop the execution, hit Ctrl+C, and then `docker-compose -f docker-compose-v3.yml down`
