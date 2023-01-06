@@ -16,13 +16,11 @@ import java.net.URL;
 public class DriverFactory {
     //static
 
-    public static void openBrowser() throws MalformedURLException {
+    public static void openBrowser(String browser) throws MalformedURLException {
         WebDriver driver = null;
         DesiredCapabilities cap = new DesiredCapabilities();
         ChromeOptions cp = new ChromeOptions();
-        //String browser = System.getProperty("browser", "chrome");
-        String browser = App.browser;
-        //String browser = browserName;
+
 
         if(browser.contains("chrome")){
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
@@ -70,7 +68,7 @@ public class DriverFactory {
     static ChromeOptions getChromeOptions(DesiredCapabilities cap){
         ChromeOptions cp = new ChromeOptions();
         //cp.addArguments("--disable-extensions");
-        cp.addArguments("--headless");
+        cp.addArguments("--headless"); //when run in githubActions
         cp.addArguments("--disable-gpu");
         cp.addArguments("--no-sandbox");
         cap.setCapability(ChromeOptions.CAPABILITY, cp);

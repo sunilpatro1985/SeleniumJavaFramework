@@ -16,12 +16,21 @@ public class BaseTest {
     WebDriverWait wait;
     //WebDriver driver = null;
 
-    //@Parameters({"browser"})
+    @Parameters({"browser"})
     @BeforeClass
-    //public void setUp(String browserName) throws MalformedURLException {
-    public void setUp() throws MalformedURLException {
+    public void setUp(@Optional String browser) throws MalformedURLException {
+    //public void setUp() throws MalformedURLException {
 
-        DriverFactory.openBrowser();
+        /*browser will be null if we don't run the test from testNG.xml file
+         *so if the browser is null, then get the browser value from App.java file
+         *You can change the default value of browser=chrome by passing the browser
+         * from maven command line as mvn test -Dbrowser=firefox
+         */
+        if(browser == null){
+            browser = App.browser;
+        }
+
+        DriverFactory.openBrowser(browser);
 
 
         System.out.println("");

@@ -2,22 +2,28 @@ version: '3.8'
 
 services:
   chrome:
-    image: selenium/standalone-chrome:4.1.0
+    image: selenium/standalone-chrome:4.7.2
     hostname: chrome
     privileged: true
     shm_size: 2g
     ports:
       - "4441:4444"
       - "7900:7900"
+    environment:
+      - SE_VNC_NO_PASSWORD=1
+      - SE_NODE_MAX_SESSIONS=3
 
   firefox:
-    image: selenium/standalone-firefox:4.1.0
+    image: selenium/standalone-firefox:4.7.2
     hostname: firefox
     privileged: true
     shm_size: 2g
     ports:
       - "4442:4444"
       - "7901:7900"
+    environment:
+      - SE_VNC_NO_PASSWORD=1
+      - SE_NODE_MAX_SESSIONS=3
 
 
       #Turn ON docker - docker must be running

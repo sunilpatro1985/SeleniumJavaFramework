@@ -13,7 +13,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <!--XmlFile>testng.xml</XmlFile-->
-        <XmlFile>testng_dockerC_parallel.xml</XmlFile>
+        <!--XmlFile>testng_dockerC_parallel.xml</XmlFile-->
+        <XmlFile>${XmlFile}</XmlFile>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <skipTests>false</skipTests>
     </properties>
@@ -128,11 +129,11 @@
                         <skipTests>${skipTests}</skipTests>
                     </configuration-->
                 <configuration>
-                    <!--suiteXmlFiles>
+                    <suiteXmlFiles>
                         <suiteXmlFile>${XmlFile}</suiteXmlFile>
-                    </suiteXmlFiles-->
-                    <parallel>classes</parallel>
-                    <threadCount>3</threadCount>
+                    </suiteXmlFiles>
+                    <!--parallel>classes</parallel>
+                    <threadCount>3</threadCount-->
                 </configuration>
             </plugin>
         </plugins>
