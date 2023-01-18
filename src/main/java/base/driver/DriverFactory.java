@@ -26,9 +26,7 @@ public class DriverFactory {
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
-            if(App.enableBrowserOptions.equalsIgnoreCase("true")){
-                cp = getChromeOptions(cap);
-            }
+
             if(App.platform.equalsIgnoreCase("local")){
                 WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(cp);
@@ -65,16 +63,6 @@ public class DriverFactory {
 
     }
 
-    static ChromeOptions getChromeOptions(DesiredCapabilities cap){
-        ChromeOptions cp = new ChromeOptions();
-        //cp.addArguments("--disable-extensions");
-        cp.addArguments("--headless"); //when run in githubActions
-        cp.addArguments("--disable-gpu");
-        cp.addArguments("--no-sandbox");
-        cap.setCapability(ChromeOptions.CAPABILITY, cp);
-        cp.merge(cap);
-        return cp;
-    }
 }
 
 
