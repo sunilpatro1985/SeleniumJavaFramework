@@ -9,6 +9,7 @@
 name: Java CI with Maven
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -28,4 +29,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean test
+      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml
+
+    - name: archive artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sparkHtml
+        path: ./reports/*.html
