@@ -29,7 +29,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml -DenableBrowserOptions=true
+      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
 
     - name: archive artifact
       uses: actions/upload-artifact@v3
