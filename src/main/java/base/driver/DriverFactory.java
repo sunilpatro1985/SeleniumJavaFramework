@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -19,7 +20,7 @@ public class DriverFactory {
     public static void openBrowser(String browser) throws MalformedURLException {
         WebDriver driver = null;
         DesiredCapabilities cap = new DesiredCapabilities();
-        ChromeOptions cp = new ChromeOptions();
+        ChromeOptions co = new ChromeOptions();
 
 
         if(browser.contains("chrome")){
@@ -27,15 +28,19 @@ public class DriverFactory {
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
+            if(App.enableBrowserOptions.equalsIgnoreCase("true")){
+                co = getChromeOptions(cap);
+            }
+
             if(App.platform.equalsIgnoreCase("local")){
                 WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(cp);
+                    driver = new ChromeDriver(co);
             }
             else if(App.platform.equalsIgnoreCase("remote")){
                 //If you run on docker
                 cap.setBrowserName("chrome");
                 cap.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cp);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co);
             }
         }else
         if(browser.contains("firefox")){
@@ -48,7 +53,7 @@ public class DriverFactory {
                 //If you run on docker
                 cap.setBrowserName("firefox");
                 cap.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co);
                 //System.out.println("Tests running on " + cap.getBrowserName());
             }
         }
@@ -62,6 +67,26 @@ public class DriverFactory {
         PageDriver.getInstance().setDriver(driver);
 
     }
+
+    static ChromeOptions getChromeOptions(DesiredCapabilities cap){
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("--headless"); //when on githubActions
+        co.addArguments("--disable-gpu");
+        co.addArguments("--no-sandbox");
+        cap.setCapability(ChromeOptions.CAPABILITY, co);
+        co.merge(cap);
+        return co;
+    }
+
+    /*static FirefoxOptions getFFOptions(DesiredCapabilities cap){
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("--headless"); //when on githubActions
+        co.addArguments("--disable-gpu");
+        co.addArguments("--no-sandbox");
+        cap.setCapability(ChromeOptions.CAPABILITY, co);
+        co.merge(cap);
+        return co;
+    }*/
 
 }
 
