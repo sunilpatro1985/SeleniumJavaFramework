@@ -10,10 +10,22 @@ name: Java CI with Maven
 
 on:
   workflow_dispatch:
+    inputs:
+      browsername:
+        description: 'Browser name'
+        #required: true
+        default: 'chrome'
+        type: string
+      testngxml:
+        description: 'testNG XML name (1 or multiple)'
+        type: string
+      testnames:
+        description: 'Test names with regex'
+        type: string
   push:
-    branches: [ "main" ]
+    #branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    #branches: [ "main" ]
 
 jobs:
   build:
@@ -28,8 +40,19 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
+    - name: Run test with testng xml
+      if: ${{ inputs.testngxml }}
+      run: >
+        mvn clean test
+        -Dsurefire.suiteXmlFiles=${{ inputs.testngxml }}
+        -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
+    - name: Run test with test name regex
+      if: ${{ inputs.testnames }}
+      run: >
+        mvn clean test
+        -Dtest=${{ inputs.testnames }}
+        -Dbrowser=${{ inputs.browsername }}
+        -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
 
     - name: archive artifact
       uses: actions/upload-artifact@v3

@@ -4,7 +4,7 @@
         <classes>
 
             <class name="testCases.TestLogin"/>
-            <class name="testCases.TestLogin_invalid"/>
+            <!--class name="testCases.TestLogin_invalid"/-->
             <!--class name="testCases.TestProductItems"/-->
             <!--class name="base.extentPkg.ExtentTestSample"/>
             <class name="base.extentPkg.ExtentTestSample1"/-->

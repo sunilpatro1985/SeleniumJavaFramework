@@ -33,7 +33,7 @@ public class DriverFactory {
             }
 
             if(App.platform.equalsIgnoreCase("local")){
-                WebDriverManager.chromedriver().setup();
+                //WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(co);
             }
             else if(App.platform.equalsIgnoreCase("remote")){
@@ -46,7 +46,7 @@ public class DriverFactory {
         if(browser.contains("firefox")){
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
             if(App.platform.equalsIgnoreCase("local")){
-                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
             }
             else if(App.platform.equalsIgnoreCase("remote")){
