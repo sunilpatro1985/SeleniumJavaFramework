@@ -10,6 +10,17 @@ name: Java CI with Maven
 
 on:
   workflow_dispatch:
+    inputs:
+      browsername:
+        type: string
+        description: 'browser name'
+        default: 'chrome'
+      testname:
+        description: 'enter the regex to run the tests'
+        type: string
+      xmlsname:
+        type: string
+        description: 'enter on or multiple xmls to run'
   push:
     branches: [ "main" ]
   pull_request:
