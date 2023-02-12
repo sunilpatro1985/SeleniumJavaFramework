@@ -39,9 +39,19 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
-        run: mvn clean test -DXmlFile=testng_dockerC_parallel.xml -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
-
+      - name: run test with xml files
+        if: ${{inputs.xmlsname}}
+        run: >
+          mvn clean test
+          -DXmlFile=${{inputs.xmlsname}}
+          -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
+      - name: run specific tests with regex
+        if: ${{inputs.testname}}
+        run: >
+          mvn clean test
+          -Dtest=${{inputs.testname}}
+          -Dbrowser=${{inputs.browsername}}
+          -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
       - name: archive artifact
         uses: actions/upload-artifact@v3
         with:
