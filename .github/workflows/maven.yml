@@ -43,7 +43,7 @@ jobs:
         if: ${{inputs.xmlsname}}
         run: >
           mvn clean test
-          -DXmlFile=${{inputs.xmlsname}}
+          -Dsurefire.suiteXmlFile=${{inputs.xmlsname}}
           -DenableBrowserOptions=true -Dmaven.test.failure.ignore=true
       - name: run specific tests with regex
         if: ${{inputs.testname}}
