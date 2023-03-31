@@ -19,41 +19,49 @@ public class DriverFactory {
 
     public static void openBrowser(String browser) throws MalformedURLException {
         WebDriver driver = null;
-        DesiredCapabilities cap = new DesiredCapabilities();
-        ChromeOptions co = new ChromeOptions();
+        //DesiredCapabilities cap = new DesiredCapabilities();
 
 
         if(browser.contains("chrome")){
+            ChromeOptions coptions = new ChromeOptions();
+
             //System.setProperty("webdriver.chrome.driver","/Users/skpatro/sel/chromedriver");
             //WebDriverManager.chromedriver().browserVersion("92");
             //WebDriverManager.chromedriver().driverVersion("93.0.4577.63");
 
             if(App.enableBrowserOptions.equalsIgnoreCase("true")){
-                co = getChromeOptions(cap);
+                coptions = getChromeOptions();
             }
 
             if(App.platform.equalsIgnoreCase("local")){
                 //WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(co);
+                    driver = new ChromeDriver(coptions);
             }
             else if(App.platform.equalsIgnoreCase("remote")){
                 //If you run on docker
-                cap.setBrowserName("chrome");
-                cap.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co);
+                //cap.setBrowserName("chrome");
+                //cap.setPlatform(Platform.LINUX);
+                coptions.setPlatformName("linux");
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), coptions);
             }
         }else
         if(browser.contains("firefox")){
+            FirefoxOptions foptions = new FirefoxOptions();
+            if(App.enableBrowserOptions.equalsIgnoreCase("true")){
+                foptions = getFFOptions();
+            }
             //System.setProperty("webdriver.gecko.driver","/Users/skpatro/sel/geckodriver");
             if(App.platform.equalsIgnoreCase("local")){
                 //WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
+                driver = new FirefoxDriver(foptions);
             }
+
             else if(App.platform.equalsIgnoreCase("remote")){
                 //If you run on docker
-                cap.setBrowserName("firefox");
-                cap.setPlatform(Platform.LINUX);
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), co);
+                //cap.setBrowserName("firefox");
+               // cap.setPlatform(Platform.LINUX);
+                foptions.setPlatformName("linux");
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), foptions);
                 //System.out.println("Tests running on " + cap.getBrowserName());
             }
         }
@@ -68,25 +76,25 @@ public class DriverFactory {
 
     }
 
-    static ChromeOptions getChromeOptions(DesiredCapabilities cap){
+    static ChromeOptions getChromeOptions(){
         ChromeOptions co = new ChromeOptions();
-        co.addArguments("--headless"); //when on githubActions
+        co.addArguments("--headless=new"); //when on githubActions
         co.addArguments("--disable-gpu");
         co.addArguments("--no-sandbox");
-        cap.setCapability(ChromeOptions.CAPABILITY, co);
-        co.merge(cap);
+        //cap.setCapability(ChromeOptions.CAPABILITY, co);
+        //co.merge(cap);
         return co;
     }
 
-    /*static FirefoxOptions getFFOptions(DesiredCapabilities cap){
-        ChromeOptions co = new ChromeOptions();
-        co.addArguments("--headless"); //when on githubActions
-        co.addArguments("--disable-gpu");
-        co.addArguments("--no-sandbox");
-        cap.setCapability(ChromeOptions.CAPABILITY, co);
-        co.merge(cap);
-        return co;
-    }*/
+    static FirefoxOptions getFFOptions(){
+        FirefoxOptions fo = new FirefoxOptions();
+        fo.addArguments("--headless"); //when on githubActions
+        fo.addArguments("--disable-gpu");
+        fo.addArguments("--no-sandbox");
+        //cap.setCapability(ChromeOptions.CAPABILITY, co);
+        //co.merge(cap);
+        return fo;
+    }
 
 }
 

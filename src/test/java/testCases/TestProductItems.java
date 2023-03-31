@@ -49,3 +49,6 @@ public class TestProductItems extends BaseTest {
 
 
 }
+
+
+//mvn test -Dtest=testCases.TestProductItems

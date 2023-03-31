@@ -10,6 +10,7 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_VNC_NO_PASSWORD=1
+      - SE_NODE_MAX_SESSIONS=3
 
   edge:
     image: selenium/node-edge:4.7.1-20221208
@@ -32,6 +33,7 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_VNC_NO_PASSWORD=1
+      - SE_NODE_MAX_SESSIONS=3
 
   selenium-hub:
     image: selenium/hub:4.7.1-20221208
