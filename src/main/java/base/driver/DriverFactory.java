@@ -35,6 +35,7 @@ public class DriverFactory {
 
             if(App.platform.equalsIgnoreCase("local")){
                 //WebDriverManager.chromedriver().setup();
+                //System.setProperty("webdriver.chrome.driver", "path of chrome driver")
                     driver = new ChromeDriver(coptions);
             }
             else if(App.platform.equalsIgnoreCase("remote")){
@@ -81,6 +82,8 @@ public class DriverFactory {
         co.addArguments("--headless=new"); //when on githubActions
         co.addArguments("--disable-gpu");
         co.addArguments("--no-sandbox");
+        //co.setBinary("path of chrome app");
+        //co.setBrowserVersion("116.0");
         //cap.setCapability(ChromeOptions.CAPABILITY, co);
         //co.merge(cap);
         return co;
